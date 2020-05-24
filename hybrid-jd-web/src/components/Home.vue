@@ -7,6 +7,7 @@
           <img v-for="(item, index) in activityDatas" :key="index" :src="item" alt="">
         </div>
       </activity>
+      <mode-options></mode-options>
     </div>
   </div>
 </template>
@@ -14,6 +15,7 @@
 <script>
 import MySwiper from '@c/swiper/MySwiper.vue';
 import Activity from '@c/currency/Activity.vue';
+import ModeOptions from '@c/currency/ModeOptions.vue';
 
 export default {
   data() {
@@ -39,24 +41,33 @@ export default {
   methods: {
     initData() {
       //this.$http = axios;
-      this.$http.get('/swiper')
-        .then(data => {
-          console.log(data);
-        }).catch(err => {
-          console.log(err);
-        });
-      this.$http.get('/activitys')
-        .then(data => {
-          console.log(data);
-          // this.activityDatas = data.list;
-        }).catch(err => {
-          console.log(err);
-        });
+      // this.$http.get('/swiper')
+      //   .then(data => {
+      //     console.log(data);
+      //   }).catch(err => {
+      //     console.log(err);
+      //   });
+      // this.$http.get('/activitys')
+      //   .then(data => {
+      //     console.log(data);
+      //     // this.activityDatas = data.list;
+      //   }).catch(err => {
+      //     console.log(err);
+      //   });
+
+      this.$http.all([
+        this.$http.get('/swiper'),
+        this.$http.get('/activitys')
+      ]).then(this.$http.spread((swiperData, activityData) => {
+        console.log(swiperData, activityData);
+        // this.activityDatas = activityData.list;
+      }));
     }
   },
   components: {
     MySwiper,
-    Activity
+    Activity,
+    ModeOptions
   },
   mounted() {
     this.initData();
