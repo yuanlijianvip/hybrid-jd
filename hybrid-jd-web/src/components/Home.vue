@@ -9,6 +9,11 @@
       </activity>
       <mode-options></mode-options>
       <seconds :dataSource="secondsDatas"></seconds>
+      <activity>
+        <div class="activity-pin-gou-jie">
+          <img src="@img/pinGouJie.gif" alt="">
+        </div>
+      </activity>
     </div>
   </div>
 </template>
@@ -148,6 +153,8 @@ export default {
     width: 100%;
     height: 100%;
     background-color: $bgColor;
+    overflow: hidden;
+    overflow-y: auto;
     &-content {
       height: 100%;
       .activity-520 {
@@ -158,6 +165,15 @@ export default {
         img {
           display: inline-block;
           width: 33.33%;
+        }
+      }
+
+      .activity-pin-gou-jie {
+        background-color: white;
+        margin-top: $marginSize;
+
+        img {
+          width: 100%;
         }
       }
     }
