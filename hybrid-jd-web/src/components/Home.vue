@@ -14,6 +14,7 @@
           <img src="@img/pinGouJie.gif" alt="">
         </div>
       </activity>
+      <goods></goods>
     </div>
   </div>
 </template>
@@ -23,6 +24,7 @@ import MySwiper from '@c/swiper/MySwiper.vue';
 import Activity from '@c/currency/Activity.vue';
 import ModeOptions from '@c/currency/ModeOptions.vue';
 import Seconds from '@c/seconds/Seconds.vue';
+import Goods from '@c/goods/Goods.vue';
 
 export default {
   data() {
@@ -139,7 +141,8 @@ export default {
     MySwiper,
     Activity,
     ModeOptions,
-    Seconds
+    Seconds,
+    Goods
   },
   mounted() {
     this.initData();
