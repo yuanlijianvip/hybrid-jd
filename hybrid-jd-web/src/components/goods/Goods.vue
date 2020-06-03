@@ -3,8 +3,10 @@
     <div class="goods-item goods-waterfall-item" ref="goodsItem" :style="goodsItemStyles[index]" v-for="(item, index) in dataSource" :key="index">
       <img class="goods-item-img" :src="item.img" :style="imgStyles[index]" />
       <div class="goods-item-desc">
-        <p class="goods-item-desc-name">
-          <span class="text-line-2">{{item.name}}</span>
+        <p class="goods-item-desc-name text-line-2" :class="{'goods-item-desc-name-hint': !item.isHave}">
+          <direct v-if="item.isDirect"></direct>
+          <no-have v-if="!item.isHave"></no-have>
+          {{item.name}}
         </p>
         <div class="goods-item-desc-data">
           <p class="goods-item-desc-data-price">￥{{item.price | priceValue}}</p>
@@ -16,6 +18,9 @@
 </template>
 
 <script>
+import Direct from '@c/goods/Direct.vue';
+import NoHave from '@c/goods/NoHave.vue';
+
 export default {
   data() {
     return {
@@ -27,6 +32,10 @@ export default {
       goodsItemStyles: [],
       goodsViewHeight: 0
     }
+  },
+  components: {
+    Direct,
+    NoHave
   },
   methods: {
     initData() {
@@ -101,6 +110,9 @@ export default {
         &-name {
           font-size: $infoSize;
           line-height: px2rem(18);
+          &-hint {
+            color: $hintColor;
+          }
         }
 
         &-data {
